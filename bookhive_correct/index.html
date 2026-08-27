@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home | BookHive</title>
+<meta name="description" content="BookHive - India's favorite online bookstore. Discover Indian authors, bestsellers, fiction and education books.">
+<meta name="keywords" content="books, online bookstore, Indian authors, buy books online">
+<meta property="og:title" content="Home | BookHive">
+<meta property="og:description" content="India's favorite place to discover great books">
+<meta property="og:image" content="images/og-banner.jpg">
+<link rel="icon" href="images/favicon.ico">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+<header class="site-header">
+<nav class="navbar" aria-label="Main navigation">
+<a class="logo" href="index.html">📚 BookHive</a>
+<ul class="nav-links">
+<li><a data-page="index.html" href="index.html">Home</a></li>
+<li><a data-page="books.html" href="books.html">Books</a></li>
+<li><a data-page="about.html" href="about.html">About</a></li>
+<li><a data-page="contact.html" href="contact.html">Contact</a></li>
+<li><a data-page="cart.html" href="cart.html">🛒 Cart (<span id="cart-count">0</span>)</a></li>
+<li><a data-page="login.html" href="login.html">Login</a></li>
+</ul>
+</nav>
+</header>
+
+<main>
+<section class="hero">
+<div>
+<h2>Welcome to BookHive</h2>
+<p>India's favorite place to discover great books. Explore fiction, education, biographies and business titles.</p>
+<a href="books.html" class="btn">Browse Books</a>
+</div>
+</section>
+<section class="featured">
+<div class="section-title"><h2>Featured Books</h2><a href="books.html">View all →</a></div>
+<div id="featured-books" class="book-grid"></div>
+</section>
+<section>
+<div class="section-title"><h2>Browse by Category</h2></div>
+<div class="category-grid">
+<a class="category" href="books.html?category=fiction"><h3>📕 Fiction</h3><p>Novels, short stories and fantasy.</p></a>
+<a class="category" href="books.html?category=education"><h3>📗 Education</h3><p>Textbooks and study guides.</p></a>
+<a class="category" href="books.html?category=biography"><h3>📘 Biographies</h3><p>Life stories of remarkable people.</p></a>
+<a class="category" href="books.html?category=business"><h3>📙 Business</h3><p>Entrepreneurship and leadership.</p></a>
+<a class="category" href="books.html?category=children"><h3>📒 Children's</h3><p>Stories for young readers.</p></a>
+<a class="category" href="books.html?category=all"><h3>📚 All Books</h3><p>Browse the complete collection.</p></a>
+</div>
+</section>
+<section class="home-intro">
+<div class="section-title"><h2>Why BookHive?</h2></div>
+<p>We make discovering your next read simple, friendly and affordable.</p>
+<div class="stat-row"><div class="stat"><strong>2,000+</strong>Books</div><div class="stat"><strong>₹199+</strong>Starting price</div><div class="stat"><strong>4.8★</strong>Average rating</div></div>
+</section>
+</main>
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+ const featured=books.slice(0,6);
+ renderBooks(featured,document.getElementById("featured-books"));
+});
+</script>
+
+<footer class="site-footer">
+<div class="footer-inner">
+<div><h3>📚 BookHive</h3><p>India's favorite place to discover great books, with a focus on Indian authors and bestsellers.</p></div>
+<div><h4>Quick Links</h4><p><a href="books.html">Books</a></p><p><a href="cart.html">Cart</a></p><p><a href="about.html">About</a></p></div>
+<div><h4>Contact</h4><p><a href="mailto:hello@bookhive.in">hello@bookhive.in</a></p><p><a href="tel:+918012345678">+91 80-1234-5678</a></p></div>
+</div>
+<p class="copyright">&copy; 2026 BookHive. All rights reserved.</p>
+</footer>
+<script src="js/books.js"></script>
+<script src="js/main.js"></script>
+
+</body></html>

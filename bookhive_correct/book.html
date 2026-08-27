@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Details | BookHive</title>
+<meta name="description" content="BookHive - India's favorite online bookstore. Discover Indian authors, bestsellers, fiction and education books.">
+<meta name="keywords" content="books, online bookstore, Indian authors, buy books online">
+<meta property="og:title" content="Book Details | BookHive">
+<meta property="og:description" content="India's favorite place to discover great books">
+<meta property="og:image" content="images/og-banner.jpg">
+<link rel="icon" href="images/favicon.ico">
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<header class="site-header">
+<nav class="navbar" aria-label="Main navigation">
+<a class="logo" href="index.html">📚 BookHive</a>
+<ul class="nav-links">
+<li><a data-page="index.html" href="index.html">Home</a></li>
+<li><a data-page="books.html" href="books.html">Books</a></li>
+<li><a data-page="about.html" href="about.html">About</a></li>
+<li><a data-page="contact.html" href="contact.html">Contact</a></li>
+<li><a data-page="cart.html" href="cart.html">🛒 Cart (<span id="cart-count">0</span>)</a></li>
+<li><a data-page="login.html" href="login.html">Login</a></li>
+</ul>
+</nav>
+</header>
+
+<main>
+<nav class="breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="index.html">Home</a></li><li><a href="books.html">Books</a></li><li>Book Details</li></ol></nav>
+<div id="book-detail"></div>
+<section class="reviews"><h2>Customer Reviews</h2><div id="reviews"></div></section>
+</main>
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+ const id=new URLSearchParams(location.search).get("id")||"1";
+ const book=getBookById(id)||books[0];
+ document.title=book.title+" | BookHive";
+ document.getElementById("book-detail").innerHTML=`
+ <article class="detail">
+  <div><img src="${book.image}" alt="${book.title} book cover"></div>
+  <div class="detail-info">
+   <h1>${book.title}</h1><p class="author">by ${book.author}</p><p class="rating">⭐ ${book.rating} (${book.reviews.toLocaleString('en-IN')} reviews)</p>
+   <p>${book.description}</p>
+   <p class="detail-price">${formatPrice(book.price)} <s class="old-price">${formatPrice(Math.round(book.price*1.25))}</s></p>
+   <div class="purchase-actions"><label for="quantity">Quantity:</label><input type="number" id="quantity" value="1" min="1" max="10"><button class="btn-primary" id="add-detail">Add to Cart</button><button class="btn-secondary" id="buy-now">Buy Now</button></div>
+   <div class="specs"><h3>Book Information</h3><dl><dt>Category</dt><dd>${book.category}</dd><dt>Language</dt><dd>English</dd><dt>Format</dt><dd>Paperback</dd><dt>Pages</dt><dd>${180+book.id*12}</dd><dt>ISBN</dt><dd>9788173711466</dd></dl></div>
+  </div>
+ </article>`;
+ document.getElementById("reviews").innerHTML=[
+ ["Rahul S.","Inspirational and motivating","15 Mar 2025"],
+ ["Priya M.","A must-read for every reader","2 Apr 2025"],
+ ["Arjun K.","Beautifully written and useful","20 May 2025"]
+ ].map(r=>`<article class="review"><h3>${r[1]}</h3><p class="reviewer">By <strong>${r[0]}</strong> | ⭐⭐⭐⭐⭐ | ${r[2]}</p><p>A wonderful reading experience. Highly recommended for anyone interested in this book.</p></article>`).join("");
+ document.getElementById("add-detail").onclick=()=>addToCart(book.id,Math.min(10,Math.max(1,Number(document.getElementById("quantity").value)||1)));
+ document.getElementById("buy-now").onclick=()=>{addToCart(book.id,1);location.href="cart.html"};
+});
+</script>
+
+<footer class="site-footer">
+<div class="footer-inner">
+<div><h3>📚 BookHive</h3><p>India's favorite place to discover great books, with a focus on Indian authors and bestsellers.</p></div>
+<div><h4>Quick Links</h4><p><a href="books.html">Books</a></p><p><a href="cart.html">Cart</a></p><p><a href="about.html">About</a></p></div>
+<div><h4>Contact</h4><p><a href="mailto:hello@bookhive.in">hello@bookhive.in</a></p><p><a href="tel:+918012345678">+91 80-1234-5678</a></p></div>
+</div>
+<p class="copyright">&copy; 2026 BookHive. All rights reserved.</p>
+</footer>
+<script src="js/books.js"></script>
+<script src="js/main.js"></script>
+<script src="js/cart.js"></script>
+</body></html>
